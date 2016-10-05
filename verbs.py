@@ -1,9 +1,7 @@
 from tkinter import *
 from random import choice, randrange
-from winsound import *
-import codecs
+import codecs, configparser, sys
 import tkinter.font as font
-import configparser
 
 class Application(Frame):
     def __init__(self, master):
@@ -13,7 +11,7 @@ class Application(Frame):
 
     def create_widgets(self):
         self.honorifics = ["Informal Low Respect", "Informal High Respect", "Formal Low Respect", "Formal High Respect"]
-        self.tenses = ["Past", "Present", "Future"]              
+        self.tenses = ["Past", "Present", "Future"]
         self.korean_words = []
         self.english_words = []
         with codecs.open('dictionary.txt', 'r+', 'UTF-8') as f:
@@ -26,7 +24,7 @@ class Application(Frame):
         assert len(self.korean_words) == len(self.english_words)
         self.used = [""]
         self.myfont = font.Font(family='Helvetica', size=24)
-        
+
         self.korean_label = Label(self, font = self.myfont)
         self.honorific_label = Label(self, font = self.myfont)
         self.tense_label = Label(self, font = self.myfont)
@@ -39,7 +37,7 @@ class Application(Frame):
         self.count = -1 #really dumb
         self.count_label = Label(self, text = "Words conjugated: " + str(self.count), font = self.myfont)
         self.next_word()
-        
+
         self.klabel.grid(row = 0, column = 0, sticky = W)
         self.hlabel.grid(row = 1, column = 0, sticky = W)
         self.tlabel.grid(row = 2, column = 0, sticky = W)
@@ -64,20 +62,21 @@ class Application(Frame):
             code = str(ind) + "-" + str(i)
         self.used.append(code)
         self.honorific_label["text"] = self.honorifics[randrange(12) % 4]
-        self.tense_label["text"] = self.tenses[randrange(12) // 4]       
+        self.tense_label["text"] = self.tenses[randrange(12) // 4]
 
         self.count += 1
         self.count_label["text"] = "Words conjugated: " + str(self.count)
         self.korean_label["text"] = self.korean_words[i]
         self.english_label["text"] = ""
         self.english = self.english_words[i]
-        
-        
+
+
     def show_korean(self):
         if self.english_label["text"] == "":
             self.english_label["text"] = self.english
         else:
-            MessageBeep(MB_OK)
+            sys.stdout.write('\a')
+            sys.stdout.flush()
 
     def next_word_event(self, event):
         self.next_word()
