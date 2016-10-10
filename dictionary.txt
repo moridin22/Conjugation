@@ -1,4 +1,4 @@
-﻿있다:To have
+있다:To have
 이다:To be
 끝내다:To finish
 끝나다:To be finished
@@ -23,11 +23,11 @@
 뚱뚱하다:To be chubby
 길다:To be long
 좋다:To be good
-끝나다: To be finished
-끝내다: To finish
-위험하다: To be dangerous
-잘생기다: To be handsome
-못생기다: To be ugly
+끝나다:To be finished
+끝내다:To finish
+위험하다:To be dangerous
+잘생기다:To be handsome
+못생기다:To be ugly
 춤추다:To dance
 픽온하다:To be tired
 다르다:To be different
