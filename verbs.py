@@ -1,6 +1,7 @@
 from tkinter import *
 from random import choice, randrange
-import codecs, configparser, sys
+from pygame import mixer
+import codecs, configparser, sys, time
 import tkinter.font as font
 
 class Application(Frame):
@@ -8,6 +9,8 @@ class Application(Frame):
         Frame.__init__(self, master)
         self.grid()
         self.create_widgets()
+        mixer.init()
+        self.alert = mixer.Sound('Funk.wav')
 
     def create_widgets(self):
         self.honorifics = ["Informal Low Respect", "Informal High Respect", "Formal Low Respect", "Formal High Respect"]
@@ -49,6 +52,10 @@ class Application(Frame):
         self.next_button.grid(row = 4, column = 0, sticky = W)
         self.count_label.grid(row = 4, column = 1, sticky = W)
 
+
+
+    def beep(self):
+        self.alert.play()
     def next_word(self):
         #option 1
         """self.honorific_label["text"] = choice(self.honorifics)
@@ -75,14 +82,19 @@ class Application(Frame):
         if self.english_label["text"] == "":
             self.english_label["text"] = self.english
         else:
-            sys.stdout.write('\a')
-            sys.stdout.flush()
+            self.beep()
+            #sys.stdout.flush()
 
     def next_word_event(self, event):
         self.next_word()
 
     def show_korean_event(self, event):
         self.show_korean()
+
+def raise_above_all(window):
+    window.attributes('-topmost', 1)
+    window.attributes('-topmost', 0)
+
 
 def go():
     root = Tk()
@@ -91,6 +103,8 @@ def go():
     app = Application(root)
     app.bind_all("n", app.next_word_event)
     app.bind_all("m", app.show_korean_event)
+    root.lift()
+    raise_above_all(root)
     root.mainloop()
 
 go()
