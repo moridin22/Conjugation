@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>verbs</string>
 	<key>CFBundleIconFile</key>
-	<string>PythonApplet.icns</string>
+	<string>han.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.pythonmac.unspecified.verbs</string>
 	<key>CFBundleInfoDictionaryVersion</key>

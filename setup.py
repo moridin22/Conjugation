@@ -9,7 +9,8 @@ from setuptools import setup
 
 APP = ['verbs.py']
 DATA_FILES = ['dictionary.txt', 'Funk.wav']
-OPTIONS = {'argv_emulation': False}
+OPTIONS = {'argv_emulation': False,
+'iconfile': '/Users/Office/programs/Conjugation/han.icns'}
 
 setup(
     app=APP,
