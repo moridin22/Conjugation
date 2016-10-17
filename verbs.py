@@ -21,7 +21,7 @@ class Application(Frame):
         self.used = [""]
         self.myfont = font.Font(family='Helvetica', size=24)
 
-        """Reads the dictionary file into lists of words."""
+        # Reads the dictionary file into lists of words.
         self.korean_words = []
         self.english_words = []
         with codecs.open('dictionary.txt', 'r+', 'UTF-8') as f:
@@ -29,19 +29,19 @@ class Application(Frame):
                 words = line.split(":")
                 self.korean_words.append(words[0])
                 self.english_words.append(words[1].rstrip())
-            """Fixes an encoding problem that occurs with UTF-8."""
+            # Fixes an encoding problem that occurs with UTF-8.
             if self.korean_words[0][0]=="\ufeff":
                 self.korean_words[0] = self.korean_words[0][1:]
         assert len(self.korean_words) == len(self.english_words), \
                "There are a different number of korean and english words."
 
-        self.grid()
-        self.create_widgets()
-
-        """Initialize the sound."""
+        # Initialize the sound.
         mixer.init()
         self.alert = mixer.Sound('Funk.wav')
 
+        # Place the app on the grid and create its widgets.
+        self.grid()
+        self.create_widgets()
 
     def create_widgets(self):
         """Creates all of the necessary widgets for the application."""
@@ -106,11 +106,15 @@ class Application(Frame):
             self.beep()
 
     def next_word_event(self, event):
-        """Calls the next_word method."""
+        """Calls the next_word method.
+        The EVENT paramater is automatically passed in by the bind_all method.
+        """
         self.next_word()
 
     def show_korean_event(self, event):
-        """Calls the show_korean method."""
+        """Calls the show_korean method.
+        The EVENT paramater is automatically passed in by the bind_all method.
+        """
         self.show_korean()
 
 
